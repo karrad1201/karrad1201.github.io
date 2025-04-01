@@ -46,13 +46,7 @@ body {
     color: rgba(245, 245, 245, 0.8);
 }
 
-/* Стили для проектов */
-.projects-section {
-    margin: 3rem 0;
-    width: 100%;
-    max-width: 800px;
-}
-
+/* Стили для кнопки проектов */
 .projects-toggle {
     background: rgba(187, 134, 252, 0.1);
     color: var(--accent);
@@ -82,6 +76,7 @@ body {
     transform: rotate(180deg);
 }
 
+/* Контейнер проектов */
 .projects-container {
     max-height: 0;
     overflow: hidden;
@@ -94,6 +89,7 @@ body {
     transition: max-height 0.5s ease-in;
 }
 
+/* Сетка проектов */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -102,20 +98,18 @@ body {
     margin-top: 1.5rem;
 }
 
+/* Карточка проекта */
 .project-card {
     background: var(--card-bg);
     border-radius: 10px;
     padding: 1.5rem;
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.05);
-    display: flex;
-    flex-direction: column;
 }
 
 .project-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    border-color: var(--accent);
 }
 
 .project-name {
@@ -134,7 +128,6 @@ body {
 .project-desc {
     color: rgba(245, 245, 245, 0.7);
     margin-bottom: 1rem;
-    flex-grow: 1;
 }
 
 .project-link {
@@ -144,7 +137,6 @@ body {
     color: var(--accent);
     text-decoration: none;
     font-weight: 500;
-    margin-top: auto;
 }
 
 .project-link:hover {
@@ -162,104 +154,24 @@ body {
 
 .social-link {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 60px;
     height: 60px;
     border-radius: 50%;
     color: white;
     font-size: 1.5rem;
     transition: all 0.3s ease;
-    text-decoration: none;
-    position: relative;
-}
-
-.social-link i {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.3s;
-}
-
-.social-tooltip {
-    position: absolute;
-    bottom: -25px;
-    font-size: 0.8rem;
-    opacity: 0;
-    transition: opacity 0.3s;
-    white-space: nowrap;
 }
 
 .social-link:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.1);
 }
 
-.social-link:hover i {
-    transform: scale(1.1);
-}
-
-.social-link:hover .social-tooltip {
-    opacity: 1;
-}
-
-.loading, .error {
-    padding: 1rem;
-    text-align: center;
-    color: rgba(245, 245, 245, 0.7);
-    grid-column: 1 / -1;
-}
-
-.loading i, .error i {
-    margin-right: 0.5rem;
-}
-
-/* Стили для избранных проектов */
-.project-card.featured {
-    border: 2px solid var(--accent);
-    background: rgba(187, 134, 252, 0.05);
-    position: relative;
-}
-
-.featured-badge {
-    position: absolute;
-    top: -10px;
-    right: 15px;
-    background: var(--accent);
-    color: var(--bg);
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-}
-
-.featured-badge i {
-    font-size: 0.7rem;
-}
-
-/* Анимация загрузки */
-.fa-spinner {
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Стили для ошибки */
-.error {
-    color: #ff6b6b;
-}
-
-/* Брендовые цвета */
+/* Цвета соцсетей */
 .telegram { background-color: var(--telegram); }
 .vkontakte { background-color: var(--vkontakte); }
-.github { background-color: var(--github); color: #121212 !important; }
+.github { background-color: var(--github); color: #121212; }
 .email { background-color: var(--email); }
 .steam { background-color: var(--steam); }
 
@@ -314,6 +226,27 @@ body {
     50% { transform: translate(50px, 50px); }
 }
 
+/* Состояния загрузки */
+.loading, .error {
+    padding: 1rem;
+    text-align: center;
+    color: rgba(245, 245, 245, 0.7);
+    grid-column: 1 / -1;
+}
+
+.error {
+    color: #ff6b6b;
+}
+
+.fa-spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 /* Адаптивность */
 @media (max-width: 600px) {
     .projects-grid {
@@ -322,5 +255,11 @@ body {
     
     .content h1 {
         font-size: 2.5rem;
+    }
+    
+    .social-link {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
     }
 }
