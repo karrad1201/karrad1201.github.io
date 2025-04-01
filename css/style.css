@@ -119,6 +119,8 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.05);
     width: 250px;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }
 
 .project-card:hover {
@@ -142,7 +144,14 @@ body {
 .project-desc {
     color: rgba(245, 245, 245, 0.7);
     margin-bottom: 1rem;
+    /* Ограничение описания 3 строками */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
     min-height: 60px;
+    line-height: 1.4;
 }
 
 .project-link {
@@ -152,13 +161,14 @@ body {
     color: var(--accent);
     text-decoration: none;
     font-weight: 500;
+    margin-top: auto;
 }
 
 .project-link:hover {
     text-decoration: underline;
 }
 
-/* Социальные ссылки */
+/* Социальные ссылки - исправленные */
 .social-links {
     display: flex;
     justify-content: center;
@@ -177,15 +187,31 @@ body {
     color: white;
     font-size: 1.5rem;
     transition: all 0.3s ease;
+    /* Фикс для белых полосок */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
 }
 
 .social-link:hover {
     transform: translateY(-5px) scale(1.1);
 }
 
+/* Убираем все псевдоэлементы */
+.social-link::before,
+.social-link::after {
+    content: none !important;
+}
+
 .telegram { background-color: var(--telegram); }
 .vkontakte { background-color: var(--vkontakte); }
-.github { background-color: var(--github); color: #121212 !important; }
+.github { 
+    background-color: var(--github); 
+    color: #121212 !important;
+    /* Фикс для GitHub иконки */
+    -webkit-text-stroke: 0.5px var(--bg);
+}
 .email { background-color: var(--email); }
 .steam { background-color: var(--steam); }
 
