@@ -1,10 +1,10 @@
 // Социальные ссылки
 const socialLinks = [
     {
-        name: "GitHubЫЫЫЫ",
+        name: "GitHub",
         url: "https://github.com/karrad1201",
         icon: "fab fa-github",
-        class: "githubA",
+        class: "github",
         tooltip: ""
     },
     {
