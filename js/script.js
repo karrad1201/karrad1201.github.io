@@ -1,16 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
     const toggleBtn = document.getElementById('toggleProjects');
     const projectsContainer = document.getElementById('projectsContainer');
+    const projectsGrid = document.getElementById('projectsGrid');
     let projectsLoaded = false;
 
     // Обработчик кнопки проектов
     toggleBtn.addEventListener('click', async () => {
+        // Переключаем видимость сразу
+        projectsContainer.classList.toggle('visible');
+        toggleBtn.classList.toggle('active');
+        toggleBtn.querySelector('span').textContent = 
+            projectsContainer.classList.contains('visible') ? 'Hide Projects' : 'Show Projects';
+
         // Загружаем проекты только при первом клике
-        if (!projectsLoaded) {
+        if (!projectsLoaded && projectsContainer.classList.contains('visible')) {
             try {
+                projectsGrid.innerHTML = '<div class="loading">Loading projects...</div>';
+                
                 const response = await fetch('https://api.github.com/users/karrad1201/repos?sort=updated&per_page=6');
                 const projects = await response.json();
-                const grid = document.getElementById('projectsGrid');
+                
+                projectsGrid.innerHTML = '';
                 
                 projects.forEach(project => {
                     const card = document.createElement('div');
@@ -28,21 +38,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         </a>
                     `;
                     
-                    grid.appendChild(card);
+                    projectsGrid.appendChild(card);
                 });
                 
                 projectsLoaded = true;
             } catch (error) {
                 console.error('Error loading projects:', error);
-                projectsGrid.innerHTML = '<div class="error">Failed to load projects</div>';
+                projectsGrid.innerHTML = '<div class="error">Failed to load projects. Please try again later.</div>';
             }
         }
-        
-        // Переключаем видимость
-        projectsContainer.classList.toggle('visible');
-        toggleBtn.classList.toggle('active');
-        toggleBtn.querySelector('span').textContent = 
-            projectsContainer.classList.contains('visible') ? 'Hide Projects' : 'Show Projects';
     });
 
     // Анимация фона
