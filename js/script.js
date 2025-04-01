@@ -4,29 +4,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectsGrid = document.getElementById('projectsGrid');
     let projectsLoaded = false;
 
+    // Список избранных проектов (добавьте свои важные проекты)
+    const featuredProjects = [
+        'karrad1201.github.io', // Ваш сайт
+        'lshimbay-map',        // Пример важного проекта
+        // Добавьте другие важные проекты
+    ];
+
     // Обработчик кнопки проектов
     toggleBtn.addEventListener('click', async () => {
-        // Переключаем видимость сразу
         projectsContainer.classList.toggle('visible');
         toggleBtn.classList.toggle('active');
         toggleBtn.querySelector('span').textContent = 
             projectsContainer.classList.contains('visible') ? 'Hide Projects' : 'Show Projects';
 
-        // Загружаем проекты только при первом клике
         if (!projectsLoaded && projectsContainer.classList.contains('visible')) {
             try {
-                projectsGrid.innerHTML = '<div class="loading">Loading projects...</div>';
+                projectsGrid.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i> Loading projects...</div>';
                 
-                const response = await fetch('https://api.github.com/users/karrad1201/repos?sort=updated&per_page=6');
+                const response = await fetch('https://api.github.com/users/karrad1201/repos?sort=updated&per_page=10');
                 const projects = await response.json();
                 
                 projectsGrid.innerHTML = '';
                 
-                projects.forEach(project => {
+                // Сначала избранные, затем остальные
+                const sortedProjects = [...projects].sort((a, b) => {
+                    const aFeatured = featuredProjects.includes(a.name);
+                    const bFeatured = featuredProjects.includes(b.name);
+                    return bFeatured - aFeatured;
+                });
+
+                sortedProjects.forEach(project => {
+                    const isFeatured = featuredProjects.includes(project.name);
                     const card = document.createElement('div');
-                    card.className = 'project-card';
+                    card.className = `project-card ${isFeatured ? 'featured' : ''}`;
                     
                     card.innerHTML = `
+                        ${isFeatured ? '<div class="featured-badge"><i class="fas fa-star"></i> Featured</div>' : ''}
                         <div class="project-name">
                             <i class="fas fa-code-branch"></i>
                             ${project.name}
@@ -44,12 +58,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 projectsLoaded = true;
             } catch (error) {
                 console.error('Error loading projects:', error);
-                projectsGrid.innerHTML = '<div class="error">Failed to load projects. Please try again later.</div>';
+                projectsGrid.innerHTML = '<div class="error"><i class="fas fa-exclamation-triangle"></i> Failed to load projects</div>';
             }
         }
     });
 
-    // Анимация фона
+    // Анимация фона (без изменений)
     document.addEventListener('mousemove', (e) => {
         const x = e.clientX / window.innerWidth;
         const y = e.clientY / window.innerHeight;
