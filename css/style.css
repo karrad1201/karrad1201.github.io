@@ -193,6 +193,7 @@ body {
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
     overflow: hidden;
+    outline: none;
 }
 
 .social-link:hover {
