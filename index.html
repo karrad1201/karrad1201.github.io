@@ -1,38 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karrad - Full Stack Developer</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <title>Karrad — Full Stack Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #222222;
+            --accent: #2962ff;
+            --card-bg: #f8f9fa;
+        }
+        [data-theme="dark"] {
+            --bg: #121212;
+            --text: #f5f5f5;
+            --accent: #bb86fc;
+            --card-bg: #1e1e1e;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+        }
+        .project-card {
+            background: var(--card-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            transition: transform 0.3s;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
 </head>
 <body>
-    <header class="header">
+    <button class="theme-toggle">🌓</button>
+    
+    <header>
         <h1>Karrad</h1>
         <p>Full Stack Developer</p>
         <nav>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
+            <a href="#about">About</a> •
+            <a href="#projects">Projects</a> •
             <a href="#contact">Contact</a>
         </nav>
     </header>
 
-    <main>
-        <section id="about" class="section">
-            <h2>About Me</h2>
-            <p>I build things for the web...</p>
-        </section>
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I build things for the web...</p>
+        <!-- GitHub Stats -->
+        <div style="margin: 2rem 0;">
+            <img src="https://github-readme-stats.vercel.app/api?username=karrad1201&show_icons=true&theme=radical" alt="Stats" style="max-width: 100%;">
+        </div>
+    </section>
 
-        <section id="projects" class="section">
-            <h2>Projects</h2>
-            <div class="projects-grid"></div>
-        </section>
-    </main>
+    <section id="projects">
+        <h2>Projects</h2>
+        <div id="projects-container"></div>
+    </section>
 
     <footer id="contact">
-        <a href="https://github.com/karrad1201">GitHub</a>
+        <a href="https://github.com/karrad1201" target="_blank">GitHub</a> •
         <a href="mailto:your@email.com">Email</a>
     </footer>
+
+    <script>
+        // Тёмная тема
+        document.querySelector('.theme-toggle').addEventListener('click', () => {
+            document.documentElement.dataset.theme = 
+                document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        });
+
+        // Загрузка проектов
+        fetch('https://api.github.com/users/karrad1201/repos?sort=updated')
+            .then(res => res.json())
+            .then(projects => {
+                const container = document.getElementById('projects-container');
+                projects.slice(0, 5).forEach(project => {
+                    container.innerHTML += `
+                        <div class="project-card">
+                            <h3>${project.name}</h3>
+                            <p>${project.description || 'No description'}</p>
+                            <a href="${project.html_url}" target="_blank">View</a>
+                        </div>
+                    `;
+                });
+            });
+    </script>
 </body>
 </html>
