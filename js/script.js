@@ -4,13 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectsGrid = document.getElementById('projectsGrid');
     let projectsLoaded = false;
 
-    // Список избранных проектов (добавьте свои важные проекты)
-    const featuredProjects = [
-        'karrad1201.github.io', // Ваш сайт
-        'lshimbay-map',        // Пример важного проекта
-        // Добавьте другие важные проекты
-    ];
-
     // Обработчик кнопки проектов
     toggleBtn.addEventListener('click', async () => {
         projectsContainer.classList.toggle('visible');
@@ -22,25 +15,25 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 projectsGrid.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i> Loading projects...</div>';
                 
-                const response = await fetch('https://api.github.com/users/karrad1201/repos?sort=updated&per_page=10');
+                const response = await fetch('https://api.github.com/users/karrad1201/repos?sort=updated&per_page=20');
                 const projects = await response.json();
                 
                 projectsGrid.innerHTML = '';
                 
-                // Сначала избранные, затем остальные
-                const sortedProjects = [...projects].sort((a, b) => {
-                    const aFeatured = featuredProjects.includes(a.name);
-                    const bFeatured = featuredProjects.includes(b.name);
-                    return bFeatured - aFeatured;
-                });
-
-                sortedProjects.forEach(project => {
-                    const isFeatured = featuredProjects.includes(project.name);
+                projects.forEach(project => {
+                    // Определяем "информационные" проекты (сайт и с README о вас)
+                    const isInfoProject = 
+                        project.name === 'karrad1201.github.io' || 
+                        (project.description && 
+                         (project.description.includes('Karrad') || 
+                          project.description.includes('About me') ||
+                          project.description.toLowerCase().includes('readme')));
+                    
                     const card = document.createElement('div');
-                    card.className = `project-card ${isFeatured ? 'featured' : ''}`;
+                    card.className = `project-card ${isInfoProject ? 'info-project' : ''}`;
                     
                     card.innerHTML = `
-                        ${isFeatured ? '<div class="featured-badge"><i class="fas fa-star"></i> Featured</div>' : ''}
+                        ${isInfoProject ? '<div class="info-badge"><i class="fas fa-info-circle"></i> About me</div>' : ''}
                         <div class="project-name">
                             <i class="fas fa-code-branch"></i>
                             ${project.name}
