@@ -1,1 +1,56 @@
-"Hello World" 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ваше Имя — Программист</title>
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle">🌓</button>
+    
+    <header>
+        <h1>Привет, я [Ваше Имя].</h1>
+        <p>Backend-разработчик | Python/Go</p>
+        <nav>
+            <a href="https://github.com/username">GitHub</a> •
+            <a href="https://linkedin.com/in/username">LinkedIn</a>
+        </nav>
+    </header>
+
+    <section id="about">
+        <h2>Обо мне</h2>
+        <p>Здесь ваше краткое описание (как на diogotc.com).</p>
+    </section>
+
+    <section id="projects">
+        <h2>Проекты</h2>
+        <div class="project">
+            <h3>Название проекта</h3>
+            <p>Описание + ссылка на GitHub.</p>
+        </div>
+    </section>
+
+    <script>
+        // Тёмная/светлая тема
+        const toggle = document.querySelector('.theme-toggle');
+        toggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+        });
+    </script>
+</body>
+</html>
