@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectsGrid = document.getElementById('projectsGrid');
     let projectsLoaded = false;
 
-    // Обработчик кнопки проектов
     toggleBtn.addEventListener('click', async () => {
         projectsContainer.classList.toggle('visible');
         toggleBtn.classList.toggle('active');
@@ -15,25 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 projectsGrid.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i> Loading projects...</div>';
                 
-                const response = await fetch('https://api.github.com/users/karrad1201/repos?sort=updated&per_page=20');
+                const response = await fetch('https://api.github.com/users/karrad1201/repos?sort=updated&per_page=10');
                 const projects = await response.json();
                 
                 projectsGrid.innerHTML = '';
                 
                 projects.forEach(project => {
-                    // Определяем "информационные" проекты (сайт и с README о вас)
-                    const isInfoProject = 
-                        project.name === 'karrad1201.github.io' || 
-                        (project.description && 
-                         (project.description.includes('Karrad') || 
-                          project.description.includes('About me') ||
-                          project.description.toLowerCase().includes('readme')));
-                    
                     const card = document.createElement('div');
-                    card.className = `project-card ${isInfoProject ? 'info-project' : ''}`;
+                    card.className = 'project-card';
                     
                     card.innerHTML = `
-                        ${isInfoProject ? '<div class="info-badge"><i class="fas fa-info-circle"></i> About me</div>' : ''}
                         <div class="project-name">
                             <i class="fas fa-code-branch"></i>
                             ${project.name}
@@ -56,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Анимация фона (без изменений)
+    // Анимация фона
     document.addEventListener('mousemove', (e) => {
         const x = e.clientX / window.innerWidth;
         const y = e.clientY / window.innerHeight;
