@@ -1,39 +1,39 @@
 // Социальные ссылки
 const socialLinks = [
     {
-        name: "",
+        name: "GitHub",
         url: "https://github.com/karrad1201",
         icon: "fab fa-github",
         class: "github",
-        tooltip: "GitHub Profile"
+        tooltip: ""
     },
     {
         name: "Email",
         url: "mailto:karad120109@gmail.com",
         icon: "fas fa-envelope",
         class: "email",
-        tooltip: "Send Email"
+        tooltip: ""
     },
     {
         name: "Telegram",
         url: "https://t.me/KarrradM",
         icon: "fab fa-telegram",
         class: "telegram",
-        tooltip: "Telegram"
+        tooltip: ""
     },
     {
         name: "Steam",
         url: "https://steamcommunity.com/profiles/76561199007305579/",
         icon: "fab fa-steam",
         class: "steam",
-        tooltip: "Steam Profile"
+        tooltip: ""
     },
     {
         name: "VK",
         url: "https://vk.com/karradme",
         icon: "fab fa-vk",
         class: "vkontakte",
-        tooltip: "VKontakte"
+        tooltip: ""
     }
 ];
 
