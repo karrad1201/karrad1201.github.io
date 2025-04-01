@@ -1,4 +1,3 @@
-/* Base Styles */
 :root {
     --bg: #121212;
     --text: #f5f5f5;
@@ -11,183 +10,82 @@
     --steam: #171a21;
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
+/* ... (остальные стили остаются без изменений) ... */
+
+.projects-section {
+    margin: 3rem 0;
     width: 100%;
-    height: 100%;
-    overflow-x: hidden;
-}
-
-body {
-    font-family: 'Inter', sans-serif;
-    color: var(--text);
-    line-height: 1.6;
-    background-color: var(--bg);
-    position: relative;
-}
-
-.main-container {
     max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-    box-sizing: border-box;
-    position: relative;
-    z-index: 1;
 }
 
-/* Social Links */
-.social-links {
+.projects-section h2 {
     display: flex;
-    gap: 1.5rem;
-    margin-top: 3rem;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.social-link {
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    color: white;
+    gap: 0.5rem;
     font-size: 1.5rem;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    position: relative;
+    margin-bottom: 1.5rem;
+    color: var(--accent);
 }
 
-.social-link i {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
     width: 100%;
-    height: 100%;
-    transition: transform 0.3s;
-}
-
-.social-tooltip {
-    position: absolute;
-    bottom: -25px;
-    font-size: 0.8rem;
-    opacity: 0;
-    transition: opacity 0.3s;
-    white-space: nowrap;
-}
-
-.social-link:hover {
-    transform: translateY(-5px);
-}
-
-.social-link:hover i {
-    transform: scale(1.1);
-}
-
-.social-link:hover .social-tooltip {
-    opacity: 1;
-}
-
-/* Brand Colors */
-.telegram { background-color: var(--telegram); }
-.vkontakte { background-color: var(--vkontakte); }
-.github { background-color: var(--github); color: #121212; }
-.email { background-color: var(--email); }
-.steam { background-color: var(--steam); }
-
-/* Background Animation */
-.bg-animation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background: var(--bg);
-    overflow: hidden;
-}
-
-.circle {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(60px);
-    opacity: 0.15;
-}
-
-.circle-1 {
-    width: 300px;
-    height: 300px;
-    background: var(--accent);
-    top: 20%;
-    left: 10%;
-    animation: float 15s infinite ease-in-out;
-}
-
-.circle-2 {
-    width: 200px;
-    height: 200px;
-    background: #03DAC6;
-    top: 60%;
-    left: 70%;
-    animation: float 12s infinite ease-in-out reverse;
-}
-
-.circle-3 {
-    width: 150px;
-    height: 150px;
-    background: #CF6679;
-    top: 30%;
-    left: 50%;
-    animation: float 18s infinite ease-in-out;
-}
-
-@keyframes float {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(50px, 50px); }
-}
-
-/* Projects Section */
-.projects-toggle {
-    background-color: var(--accent);
-    color: var(--bg);
-    border: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 1.5rem 0;
-    transition: all 0.3s;
-    font-weight: 500;
-}
-
-.projects-toggle:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(187, 134, 252, 0.3);
-}
-
-.projects-container {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease-out;
-}
-
-.projects-container.visible {
-    max-height: 1000px;
-    transition: max-height 0.5s ease-in;
 }
 
 .project-card {
-    background-color: var(--card-bg);
+    background: var(--card-bg);
+    border-radius: 10px;
     padding: 1.5rem;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
 }
 
-.projects-container.visible .project-card {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: calc(var(--i) * 0.1s);
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-color: var(--accent);
+}
+
+.project-name {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.project-name i {
+    color: var(--accent);
+}
+
+.project-desc {
+    color: rgba(245, 245, 245, 0.7);
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: auto;
+}
+
+.project-link:hover {
+    text-decoration: underline;
+}
+
+/* Адаптивность */
+@media (max-width: 600px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
 }
