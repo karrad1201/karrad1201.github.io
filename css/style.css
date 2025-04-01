@@ -35,6 +35,11 @@ body {
     box-sizing: border-box;
 }
 
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 .content h1 {
     font-size: 3rem;
     margin-bottom: 0.5rem;
@@ -44,6 +49,15 @@ body {
     font-size: 1.2rem;
     margin-bottom: 2rem;
     color: rgba(245, 245, 245, 0.8);
+}
+
+/* Стили для проектов */
+.projects-section {
+    margin: 3rem auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .projects-toggle {
@@ -88,12 +102,13 @@ body {
 }
 
 .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1.5rem;
     width: 100%;
     margin-top: 1.5rem;
-    justify-items: center; /* Центрируем карточки по горизонтали */
+    padding: 0 1rem;
 }
 
 .project-card {
@@ -102,9 +117,8 @@ body {
     padding: 1.5rem;
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.05);
-    width: 100%; 
-    max-width: 300px; 
-    box-sizing: border-box; 
+    width: 250px;
+    box-sizing: border-box;
 }
 
 .project-card:hover {
@@ -128,6 +142,7 @@ body {
 .project-desc {
     color: rgba(245, 245, 245, 0.7);
     margin-bottom: 1rem;
+    min-height: 60px;
 }
 
 .project-link {
@@ -143,6 +158,7 @@ body {
     text-decoration: underline;
 }
 
+/* Социальные ссылки */
 .social-links {
     display: flex;
     justify-content: center;
@@ -161,24 +177,10 @@ body {
     color: white;
     font-size: 1.5rem;
     transition: all 0.3s ease;
-    text-decoration: none !important;
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-    position: relative;
-    overflow: hidden;
-}
-
-.social-link::before,
-.social-link::after {
-    content: none !important;
 }
 
 .social-link:hover {
     transform: translateY(-5px) scale(1.1);
-    text-decoration: none !important;
-    border: none !important;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .telegram { background-color: var(--telegram); }
@@ -187,6 +189,7 @@ body {
 .email { background-color: var(--email); }
 .steam { background-color: var(--steam); }
 
+/* Анимация фона */
 .bg-animation {
     position: fixed;
     top: 0;
@@ -237,11 +240,12 @@ body {
     50% { transform: translate(50px, 50px); }
 }
 
+/* Состояния */
 .loading, .error {
     padding: 1rem;
     text-align: center;
     color: rgba(245, 245, 245, 0.7);
-    grid-column: 1 / -1;
+    width: 100%;
 }
 
 .error {
@@ -257,14 +261,8 @@ body {
     100% { transform: rotate(360deg); }
 }
 
+/* Адаптивность */
 @media (max-width: 600px) {
-    .projects-grid {
-        grid-template-columns: 1fr;
-        max-width: 350px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
     .content h1 {
         font-size: 2.5rem;
     }
@@ -274,11 +272,9 @@ body {
         height: 50px;
         font-size: 1.3rem;
     }
-}
-
-/* Фикс для Safari */
-@supports (-webkit-touch-callout: none) {
-    .social-link {
-        -webkit-backface-visibility: hidden;
+    
+    .project-card {
+        width: 100%;
+        max-width: 300px;
     }
 }
