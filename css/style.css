@@ -187,19 +187,14 @@ body {
     color: white;
     font-size: 1.5rem;
     transition: all 0.3s ease;
-    /* Фикс для белых полосок */
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
+    background-color: #1a1a1a;
     overflow: hidden;
-    outline: none;
-    box-sizing: border-box;
+    box-shadow: 0 0 0 2px #1a1a1a; /* Дублируем цвет фона */
     -webkit-transform: perspective(1px) translateZ(0);
     transform: perspective(1px) translateZ(0);
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-
+    line-height: 1; /* Добавьте это */
 }
+
 
 .social-link:hover {
     transform: translateY(-5px) scale(1.1);
@@ -211,6 +206,10 @@ body {
     content: none !important;
 }
 .social-link svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
     display: block;
 }
 
