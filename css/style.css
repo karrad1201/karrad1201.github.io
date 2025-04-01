@@ -204,6 +204,17 @@ body {
     opacity: 1;
 }
 
+.loading, .error {
+    padding: 1rem;
+    text-align: center;
+    color: rgba(245, 245, 245, 0.7);
+    grid-column: 1 / -1;
+}
+
+.loading i, .error i {
+    margin-right: 0.5rem;
+}
+
 /* Брендовые цвета */
 .telegram { background-color: var(--telegram); }
 .vkontakte { background-color: var(--vkontakte); }
