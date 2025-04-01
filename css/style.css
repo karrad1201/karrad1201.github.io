@@ -194,6 +194,7 @@ body {
     -webkit-transform: translateZ(0);
     overflow: hidden;
     outline: none;
+    box-sizing: border-box;
 }
 
 .social-link:hover {
@@ -204,6 +205,9 @@ body {
 .social-link::before,
 .social-link::after {
     content: none !important;
+}
+.social-link svg {
+    display: block;
 }
 
 .telegram { background-color: var(--telegram); }
