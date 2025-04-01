@@ -215,6 +215,47 @@ body {
     margin-right: 0.5rem;
 }
 
+/* Стили для избранных проектов */
+.project-card.featured {
+    border: 2px solid var(--accent);
+    background: rgba(187, 134, 252, 0.05);
+    position: relative;
+}
+
+.featured-badge {
+    position: absolute;
+    top: -10px;
+    right: 15px;
+    background: var(--accent);
+    color: var(--bg);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.featured-badge i {
+    font-size: 0.7rem;
+}
+
+/* Анимация загрузки */
+.fa-spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Стили для ошибки */
+.error {
+    color: #ff6b6b;
+}
+
 /* Брендовые цвета */
 .telegram { background-color: var(--telegram); }
 .vkontakte { background-color: var(--vkontakte); }
