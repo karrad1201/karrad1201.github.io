@@ -48,10 +48,7 @@ function renderSocialLinks() {
         linkElement.rel = "noopener noreferrer";
         linkElement.setAttribute('aria-label', link.tooltip);
         
-        linkElement.innerHTML = `
-            <i class="${link.icon}"></i>
-            <span class="social-tooltip">${link.tooltip}</span>
-        `;
+        linkElement.innerHTML = `<i class="${link.icon}"></i>`;
         
         container.appendChild(linkElement);
     });
