@@ -46,7 +46,6 @@ body {
     color: rgba(245, 245, 245, 0.8);
 }
 
-/* Стили для кнопки проектов */
 .projects-toggle {
     background: rgba(187, 134, 252, 0.1);
     color: var(--accent);
@@ -76,7 +75,6 @@ body {
     transform: rotate(180deg);
 }
 
-/* Контейнер проектов */
 .projects-container {
     max-height: 0;
     overflow: hidden;
@@ -89,7 +87,6 @@ body {
     transition: max-height 0.5s ease-in;
 }
 
-/* Сетка проектов */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -98,7 +95,6 @@ body {
     margin-top: 1.5rem;
 }
 
-/* Карточка проекта */
 .project-card {
     background: var(--card-bg);
     border-radius: 10px;
@@ -143,7 +139,6 @@ body {
     text-decoration: underline;
 }
 
-/* Социальные ссылки */
 .social-links {
     display: flex;
     justify-content: center;
@@ -162,26 +157,32 @@ body {
     color: white;
     font-size: 1.5rem;
     transition: all 0.3s ease;
-
     text-decoration: none !important;
     border: none !important;
     outline: none !important;
+    box-shadow: none !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-link::before,
+.social-link::after {
+    content: none !important;
 }
 
 .social-link:hover {
     transform: translateY(-5px) scale(1.1);
     text-decoration: none !important;
     border: none !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Цвета соцсетей */
 .telegram { background-color: var(--telegram); }
 .vkontakte { background-color: var(--vkontakte); }
-.github { background-color: var(--github); color: #121212; }
+.github { background-color: var(--github); color: #121212 !important; }
 .email { background-color: var(--email); }
 .steam { background-color: var(--steam); }
 
-/* Анимация фона */
 .bg-animation {
     position: fixed;
     top: 0;
@@ -232,7 +233,6 @@ body {
     50% { transform: translate(50px, 50px); }
 }
 
-/* Состояния загрузки */
 .loading, .error {
     padding: 1rem;
     text-align: center;
@@ -253,7 +253,6 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-/* Адаптивность */
 @media (max-width: 600px) {
     .projects-grid {
         grid-template-columns: 1fr;
@@ -267,5 +266,12 @@ body {
         width: 50px;
         height: 50px;
         font-size: 1.3rem;
+    }
+}
+
+/* Фикс для Safari */
+@supports (-webkit-touch-callout: none) {
+    .social-link {
+        -webkit-backface-visibility: hidden;
     }
 }
